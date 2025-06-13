@@ -1,0 +1,66 @@
+services:
+  - type: web
+    name: admin-dashboard
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        sync: false
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        fromDatabase:
+          name: admin-dashboard-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: admin-dashboard-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: admin-dashboard-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: admin-dashboard-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: admin-dashboard-db
+          property: password
+      - key: CACHE_DRIVER
+        value: redis
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: admin-dashboard-redis
+          property: host
+      - key: REDIS_PASSWORD
+        fromService:
+          type: redis
+          name: admin-dashboard-redis
+          property: password
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: admin-dashboard-redis
+          property: port
+
+databases:
+  - name: admin-dashboard-db
+    databaseName: admin_dashboard
+    user: admin
+    plan: standard
+
+services:
+  - type: redis
+    name: admin-dashboard-redis
+    plan: standard
+    ipAllowList: [] 
