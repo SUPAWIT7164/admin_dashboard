@@ -13,6 +13,16 @@ services:
         value: false
       - key: APP_URL
         sync: false
+      - key: APP_KEY
+        generateValue: true
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: error
+      - key: SESSION_DRIVER
+        value: redis
+      - key: SESSION_LIFETIME
+        value: "120"
       - key: DB_CONNECTION
         value: mysql
       - key: DB_HOST
@@ -52,6 +62,12 @@ services:
           type: redis
           name: admin-dashboard-redis
           property: port
+      - key: QUEUE_CONNECTION
+        value: redis
+      - key: BROADCAST_DRIVER
+        value: redis
+      - key: FILESYSTEM_DISK
+        value: local
 
 databases:
   - name: admin-dashboard-db
