@@ -56,7 +56,7 @@ services:
         fromService:
           type: redis
           name: admin-dashboard-redis
-          property: password
+          property: connectionString
       - key: REDIS_PORT
         fromService:
           type: redis
