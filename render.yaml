@@ -21,7 +21,7 @@ services:
       - key: LOG_LEVEL
         value: debug
       - key: SESSION_DRIVER
-        value: redis
+        value: file
       - key: SESSION_LIFETIME
         value: "120"
       - key: DB_CONNECTION
@@ -47,26 +47,11 @@ services:
           name: admin-dashboard-db
           property: password
       - key: CACHE_DRIVER
-        value: redis
-      - key: REDIS_HOST
-        fromService:
-          type: redis
-          name: admin-dashboard-redis
-          property: host
-      - key: REDIS_PASSWORD
-        fromService:
-          type: redis
-          name: admin-dashboard-redis
-          property: connectionString
-      - key: REDIS_PORT
-        fromService:
-          type: redis
-          name: admin-dashboard-redis
-          property: port
+        value: file
       - key: QUEUE_CONNECTION
-        value: redis
+        value: sync
       - key: BROADCAST_DRIVER
-        value: redis
+        value: log
       - key: FILESYSTEM_DISK
         value: local
     numInstances: 1
