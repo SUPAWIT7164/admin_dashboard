@@ -11,7 +11,7 @@ services:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
-        value: false
+        value: true
       - key: APP_URL
         sync: true
       - key: APP_KEY
@@ -19,7 +19,7 @@ services:
       - key: LOG_CHANNEL
         value: stderr
       - key: LOG_LEVEL
-        value: error
+        value: debug
       - key: SESSION_DRIVER
         value: redis
       - key: SESSION_LIFETIME
@@ -71,8 +71,16 @@ services:
         value: local
     numInstances: 1
     autoDeploy: true
-    buildCommand: npm run build
-    startCommand: php artisan serve --host=0.0.0.0 --port=8080
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      npm install
+      npm run build
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: |
+      php artisan migrate --force
+      php artisan serve --host=0.0.0.0 --port=8080
 
   - type: redis
     name: admin-dashboard-redis
