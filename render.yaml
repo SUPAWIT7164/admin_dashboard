@@ -3,7 +3,7 @@ services:
     name: admin-dashboard
     env: docker
     dockerfilePath: ./Dockerfile
-    plan: standard
+    plan: free
     region: singapore
     healthCheckPath: /
     envVars:
@@ -71,11 +71,11 @@ services:
 
   - type: redis
     name: admin-dashboard-redis
-    plan: standard
+    plan: free
     ipAllowList: []
 
 databases:
   - name: admin-dashboard-db
     databaseName: admin_dashboard
     user: admin
-    plan: standard 
+    plan: free 
