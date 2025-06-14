@@ -6,13 +6,14 @@ services:
     plan: free
     region: singapore
     healthCheckPath: /
+    healthCheckTimeout: 300
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        sync: false
+        sync: true
       - key: APP_KEY
         generateValue: true
       - key: LOG_CHANNEL
@@ -68,6 +69,10 @@ services:
         value: redis
       - key: FILESYSTEM_DISK
         value: local
+    numInstances: 1
+    autoDeploy: true
+    buildCommand: npm run build
+    startCommand: php artisan serve --host=0.0.0.0 --port=8080
 
   - type: redis
     name: admin-dashboard-redis
