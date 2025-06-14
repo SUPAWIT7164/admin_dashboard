@@ -69,13 +69,13 @@ services:
       - key: FILESYSTEM_DISK
         value: local
 
+  - type: redis
+    name: admin-dashboard-redis
+    plan: standard
+    ipAllowList: []
+
 databases:
   - name: admin-dashboard-db
     databaseName: admin_dashboard
     user: admin
-    plan: standard
-
-  - type: redis
-    name: admin-dashboard-redis
-    plan: standard
-    ipAllowList: [] 
+    plan: standard 
