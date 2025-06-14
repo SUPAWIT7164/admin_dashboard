@@ -46,7 +46,8 @@ RUN npm run build \
 
 # ตั้งค่าสิทธิ์
 RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www/storage
+    && chmod -R 755 /var/www/storage \
+    && chmod -R 755 /var/www/bootstrap/cache
 
 # เปิด port 8080
 EXPOSE 8080

@@ -54,6 +54,12 @@ services:
         value: log
       - key: FILESYSTEM_DISK
         value: local
+      - key: VIEW_COMPILED_PATH
+        value: /var/www/storage/framework/views
+      - key: CACHE_PATH
+        value: /var/www/storage/framework/cache
+      - key: SESSION_PATH
+        value: /var/www/storage/framework/sessions
     numInstances: 1
     autoDeploy: true
     buildCommand: |
