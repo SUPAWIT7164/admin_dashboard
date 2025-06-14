@@ -75,7 +75,6 @@ databases:
     user: admin
     plan: standard
 
-services:
   - type: redis
     name: admin-dashboard-redis
     plan: standard
